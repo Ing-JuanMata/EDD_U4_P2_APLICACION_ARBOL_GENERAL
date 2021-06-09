@@ -1,4 +1,5 @@
 ``
+
      public NodoGeneral buscarNodoRecursivo(String path) {
         path = path.substring(1);
         if (path.split("/")[0].charAt(0) == raiz.dato && path.split("/").length == 1) {
@@ -17,4 +18,5 @@
         return path.length() == 1 ? actual.obtenerHijo(path.charAt(0)) : buscarNodoRecursivo(path.substring(2), actual.obtenerHijo(path.charAt(0)));
     }
 }   
+
 ``
