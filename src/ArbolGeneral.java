@@ -65,17 +65,16 @@ public class ArbolGeneral {
         if (path.split("/")[0].charAt(0) == raiz.dato && path.split("/").length == 1) {
             return raiz;
         }
-        return buscarNodoRecursivo(path.substring(2), raiz.ini);
+        if (path.length() == 3) {
+            return raiz.obtenerHijo(path.charAt(2));
+        }
+        return buscarNodoRecursivo(path.substring(4), raiz.obtenerHijo(path.charAt(2)));
     }
 
-    private NodoGeneral buscarNodoRecursivo(String path, NodoHijo actual) {
+    private NodoGeneral buscarNodoRecursivo(String path, NodoGeneral actual) {
         if (actual == null) {
             return null;
         }
-        if (path.length() == 1) {
-            return actual.direccionHijo.dato == path.charAt(0) ? actual.direccionHijo : buscarNodoRecursivo(path, actual.sig);
-        }
-        
-        return actual.direccionHijo.dato == path.charAt(0) ? buscarNodoRecursivo(path.substring(2), actual.direccionHijo.ini) : buscarNodoRecursivo(path, actual.sig);
+        return path.length() == 1 ? actual.obtenerHijo(path.charAt(0)) : buscarNodoRecursivo(path.substring(2), actual.obtenerHijo(path.charAt(0)));
     }
 }
